@@ -42,7 +42,8 @@ Die alten Adressen bleiben erhalten (`htm/aerzte_<ort>.htm`, `htm/avw_impressum.
 
 ## Technik
 
-- Schriften (Archivo, Inter, JetBrains Mono, SIL OFL) liegen lokal in `public/assets/fonts`. Es werden keine Drittanbieter geladen.
+- Schriften (Playfair Display und Inter, SIL OFL) liegen lokal in `public/assets/fonts`. Es werden keine Drittanbieter geladen.
+- Cookie-Hinweis nach DSGVO/TDDDG: `public/assets/js/consent.js`. Externe Inhalte stehen im HTML nur als Platzhalter (`data-consent="external"`, `data-src="…"`) und werden erst nach Einwilligung geladen. Aktuell betrifft das nur die OpenStreetMap-Karte im Kontaktbereich. Neue Dienste (z. B. Statistik) als `<script type="text/plain" data-consent="…" data-src="…">` einbinden, Kategorie in `CATEGORIES` und im Dialog in `build.py` (`consent_markup`) ergänzen und die Datenschutzerklärung anpassen. Die Auswahl liegt in localStorage, nicht in Cookies.
 - Hell- und Dunkelmodus folgen dem System.
 - Barrierearm: Skip-Link, Tastaturfokus, Kontrast, `prefers-reduced-motion`.
 - Sitemap und `robots.txt` entstehen beim Build. Profile ohne aktuellen Eintrag sind `noindex`.

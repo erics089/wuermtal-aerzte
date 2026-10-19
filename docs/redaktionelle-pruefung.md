@@ -6,6 +6,7 @@ Die Inhalte stammen aus der Bestandsaufnahme der alten Website (Stand der Seite:
 
 - Impressum: Vereinsregister (Gericht und Nummer) ergänzen, aktuelle Vertretung und zustellfähige Anschrift bestätigen, ggf. E-Mail-Adresse ergänzen (Pflichtangabe).
 - Datenschutz: Hosting-Anbieter benennen und Auftragsverarbeitungsvertrag prüfen. Der Text geht von statischem Hosting ohne Cookies, Tracking und Formulare aus.
+- Karte: Der OpenStreetMap-Marker liegt ungefähr am Bahnhof Gauting (`OSM_EMBED` in `build.py`). Position prüfen. Datenschutzerklärung und Cookie-Dialog nennen die OpenStreetMap Foundation als Empfänger.
 - Bildrechte: Das AVW-Logo und das Würm-Foto (Hero-Hintergrund) stammen vom Verein bzw. wurden bereitgestellt. Nutzungsrechte am Foto bestätigen. Alle übrigen Grafiken sind eigene SVGs.
 
 ## Hinweise zu einzelnen Profilen (aus der Bestandsaufnahme)

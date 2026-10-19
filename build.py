@@ -26,6 +26,10 @@ if not BASE_PATH.endswith("/"):
     BASE_PATH += "/"
 TODAY = dt.date.today().isoformat()
 DATA_STAND = "22.11.2023"
+# Karte nur nach Einwilligung (siehe public/assets/js/consent.js); Marker ungefähr am Bahnhof Gauting
+OSM_EMBED = ("https://www.openstreetmap.org/export/embed.html?bbox=11.3715%2C48.0655%2C11.3825%2C48.0725"
+             "&layer=mapnik&marker=48.0690%2C11.3770")
+OSM_LINK = "https://www.openstreetmap.org/search?query=Bahnhofplatz%203%2C%2082131%20Gauting"
 
 esc = html.escape
 
@@ -36,10 +40,6 @@ ORT_SLUG = {
     "Krailling": "krailling", "Lochham": "lochham", "Martinsried": "martinsried",
     "Neuried": "neuried", "Planegg": "planegg", "Stockdorf": "stockdorf",
 }
-# Reihenfolge der schematischen Pulslinie im Hero (kein Anspruch auf Kartentreue)
-PULSE_ORDER = ["Gauting", "Stockdorf", "Krailling", "Planegg", "Martinsried",
-               "Gräfelfing", "Lochham", "Neuried", "Germering"]
-
 # (slug, Label, Icon, Muster); Reihenfolge = Priorität für das Haupt-Icon
 FACHGEBIETE = [
     ("kardiologie", "Kardiologie", "kardio", r"kardiolog"),
@@ -157,7 +157,9 @@ def icon(name: str, root: str, cls: str = "") -> str:
 
 
 def brand_mark(root: str) -> str:
-    return f'<img class="brand-logo" src="{root}assets/img/logo-avw.png" width="88" height="40" alt="AVW – Ärzteverein im Würmtal">'
+    return (f'<img class="brand-logo" src="{root}assets/img/logo-avw.png" width="64" height="29" alt="AVW">'
+            '<span class="brand-text"><span class="brand-name">Würmtal Ärzte</span>'
+            '<span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span>')
 
 
 def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs_assets: bool = False) -> str:
@@ -171,7 +173,7 @@ def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="theme-color" content="#df7a36">
+<meta name="theme-color" content="#2e4b38">
 <meta name="color-scheme" content="light dark">
 {robots}
 <link rel="canonical" href="{canon}">
@@ -186,7 +188,7 @@ def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs
 <meta property="og:url" content="{canon}">
 <meta property="og:image" content="{SITE_URL}/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="{a}assets/fonts/archivo-latin-wdth.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{a}assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{a}assets/css/main.css">
 </head>
 <body>
@@ -199,9 +201,8 @@ def header(root: str, active: str = "") -> str:
         cur = ' aria-current="page"' if active == key else ""
         return f'<a href="{href}"{cur}>{label}</a>'
     return f"""<header class="site-header">
-<div class="bar">
-<a class="brand" href="{root}index.html" aria-label="Würmtal Ärzte – Startseite">{brand_mark(root)}
-<span><span class="brand-name">Würmtal Ärzte</span><span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span></a>
+<div class="wrap bar">
+<a class="brand" href="{root}index.html" aria-label="Würmtal Ärzte – Startseite">{brand_mark(root)}</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
 <nav class="nav" id="site-nav" aria-label="Hauptnavigation">
 {a(root + "aerzte.html", "Ärzte finden", "aerzte")}
@@ -216,12 +217,47 @@ def header(root: str, active: str = "") -> str:
 """
 
 
+def consent_markup(root: str) -> str:
+    return f"""<div class="consent" id="consent" role="region" aria-label="Datenschutz-Einstellungen" hidden>
+<h2>Ihre Privatsphäre</h2>
+<p>Diese Website setzt keine Cookies und kein Tracking ein. Nur mit Ihrer Einwilligung laden wir externe Inhalte nach, zum Beispiel die Karte von OpenStreetMap. Dabei wird Ihre IP-Adresse an den Anbieter übertragen. Mehr dazu in der <a href="{root}htm/datenschutz.html">Datenschutzerklärung</a> und im <a href="{root}htm/avw_impressum.htm">Impressum</a>.</p>
+<div class="consent-actions">
+<button type="button" class="btn" data-consent-action="accept">Alle akzeptieren</button>
+<button type="button" class="btn" data-consent-action="reject">Nur notwendige</button>
+<button type="button" class="btn outline" data-consent-action="settings">Einstellungen</button>
+</div>
+</div>
+<div class="consent-modal" id="consent-modal" hidden>
+<div class="consent-dialog" role="dialog" aria-modal="true" aria-labelledby="consent-title">
+<h2 id="consent-title">Datenschutz-Einstellungen</h2>
+<p>Sie entscheiden, welche Inhalte geladen werden. Ihre Auswahl können Sie jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern oder widerrufen.</p>
+<div class="consent-cat">
+<h3>Notwendig</h3>
+<label class="switch"><input type="checkbox" name="necessary" checked disabled>Immer aktiv</label>
+<p>Speichert ausschließlich Ihre Auswahl auf diesem Gerät, damit die Abfrage nicht bei jedem Besuch erscheint. Es werden keine Cookies gesetzt.</p>
+<dl><div><dt>Speicherort</dt><dd>localStorage Ihres Browsers (Schlüssel „avw-consent“)</dd></div><div><dt>Dauer</dt><dd>6 Monate</dd></div></dl>
+</div>
+<div class="consent-cat">
+<h3>Externe Inhalte</h3>
+<label class="switch"><input type="checkbox" name="external">Erlauben</label>
+<p>Lädt die Karte von OpenStreetMap im Kontaktbereich. Dabei erhält der Anbieter Ihre IP-Adresse und technische Browserdaten.</p>
+<dl><div><dt>Anbieter</dt><dd>OpenStreetMap Foundation, Vereinigtes Königreich</dd></div><div><dt>Zweck</dt><dd>Anfahrtskarte zur Geschäftsstelle</dd></div><div><dt>Rechtsgrundlage</dt><dd>Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG)</dd></div></dl>
+</div>
+<div class="consent-actions">
+<button type="button" class="btn" data-consent-action="save">Auswahl speichern</button>
+<button type="button" class="btn" data-consent-action="accept">Alle akzeptieren</button>
+<button type="button" class="btn outline" data-consent-action="reject">Nur notwendige</button>
+</div>
+</div>
+</div>"""
+
+
 def footer(root: str) -> str:
     orte = "".join(f'<li><a href="{root}htm/aerzte_{ORT_SLUG[o]}.htm">{o}</a></li>' for o in ORT_SLUG)
     return f"""<footer class="site-footer">
 <div class="wrap footer-grid">
 <div>
-<a class="brand" href="{root}index.html">{brand_mark(root)}<span><span class="brand-name">Würmtal Ärzte</span><span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span></a>
+<a class="brand" href="{root}index.html">{brand_mark(root)}</a>
 <p>Das Verzeichnis der Ärztinnen und Ärzte in Gauting, Germering, Gräfelfing, Krailling, Lochham, Martinsried, Neuried, Planegg und Stockdorf.</p>
 </div>
 <div><h4>Orte</h4><ul class="cols">{orte}</ul></div>
@@ -231,11 +267,14 @@ def footer(root: str) -> str:
 <li><a href="{root}index.html#verein">Über den Verein</a></li>
 <li><a href="{root}htm/avw_impressum.htm">Impressum</a></li>
 <li><a href="{root}htm/datenschutz.html">Datenschutz</a></li>
+<li><button type="button" class="linklike" data-consent-open>Cookie-Einstellungen</button></li>
 </ul></div>
 </div>
 <div class="wrap footer-base"><span>© {dt.date.today().year} Ärzteverein im Würmtal e.V.</span><span>Arztangaben: Stand der bisherigen Website {DATA_STAND}</span></div>
 </footer>
+{consent_markup(root)}
 <script src="{root}assets/js/main.js" defer></script>
+<script src="{root}assets/js/consent.js" defer></script>
 </body>
 </html>
 """
@@ -252,7 +291,7 @@ def page_head(root, crumbs, h1, lead="", bg_word=""):
         if i:
             cs += '<span aria-hidden="true">/</span>'
         cs += f'<a href="{href}">{esc(label)}</a>' if href else f"<span>{esc(label)}</span>"
-    bg = f'<div class="bg-word" aria-hidden="true">{esc(bg_word)}</div>' if bg_word else ""
+    bg = ""
     lead_html = f"<p>{lead}</p>" if lead else ""
     return f'<section class="page-head">{bg}<div class="wrap"><nav class="crumbs" aria-label="Brotkrumen">{cs}</nav><h1>{h1}</h1>{lead_html}</div></section>'
 
@@ -281,56 +320,18 @@ def card(e: dict, root: str) -> str:
 # --------------------------------------------------------------------------- Seiten
 
 
-def hero_art() -> str:
-    xs = [60 + i * 60 for i in range(9)]
-    base = 400
-    d = f"M24,{base}"
-    nodes = labels = ""
-    for i, (x, o) in enumerate(zip(xs, PULSE_ORDER)):
-        n = len(by_ort[o])
-        d += f" L{x - 12},{base}"
-        if i % 3 == 1:
-            d += f" L{x - 5},{base - 62} L{x + 3},{base + 34} L{x + 8},{base}"
-        d += f" L{x + 12},{base}"
-        bar = 6 + n * 4
-        nodes += (f'<line x1="{x}" y1="{base - 18}" x2="{x}" y2="{base - 18 - bar}" stroke="#fff8f2" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>'
-                  f'<circle cx="{x}" cy="{base}" r="7" fill="#fff8f2"/><circle cx="{x}" cy="{base}" r="2.6" fill="#f26a1b"/>')
-        labels += (f'<text transform="translate({x + 3},{base + 24}) rotate(55)" font-family="JetBrains Mono,monospace" '
-                   f'font-size="11" letter-spacing="1.4" fill="#fff8f2" fill-opacity=".9">{o.upper()}</text>')
-    d += f" L576,{base}"
-    return f"""<svg viewBox="0 0 600 600" role="img" aria-label="Schematische Pulslinie durch die neun Orte des Würmtals">
-<defs>
-<linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1b784"/><stop offset=".55" stop-color="#e0803a"/><stop offset="1" stop-color="#c9642a"/></linearGradient>
-<radialGradient id="hglow" cx=".25" cy=".15" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-</defs>
-<rect width="600" height="600" rx="40" fill="url(#hg)"/>
-<rect width="600" height="600" rx="40" fill="url(#hglow)"/>
-<g fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1.2">
-<circle cx="360" cy="190" r="70"/><circle cx="360" cy="190" r="115"/><circle cx="360" cy="190" r="165"/><circle cx="360" cy="190" r="220"/>
-</g>
-<path d="M360 120v140M290 190h140" stroke="#fff8f2" stroke-width="3" stroke-linecap="round"/>
-<rect x="318" y="148" width="84" height="84" rx="22" fill="#fff" fill-opacity=".12" stroke="#fff" stroke-opacity=".5" stroke-width="1.2"/>
-<path d="M24 {base}H576" stroke="#fff" stroke-opacity=".35" stroke-width="1.2" stroke-dasharray="2 7" stroke-linecap="round"/>
-<path d="{d}" fill="none" stroke="#fff8f2" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
-{nodes}{labels}
-<text x="40" y="58" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2.4" fill="#5e2a0a" fill-opacity=".85">WÜRM · SCHEMATISCH</text>
-</svg>"""
-
-
 def build_index() -> str:
     root = ""
     maxn = max(len(v) for v in by_ort.values())
-    tick = "".join(f"<span>{lbl}</span>" for _, lbl, _, _ in FACHGEBIETE)
-    tick = tick + tick
     fach_tiles = ""
     for s, lbl, ic, _ in FACHGEBIETE:
         n = fach_counts[s]
         if not n:
             continue
-        fach_tiles += (f'<a class="fach" href="aerzte.html#{s}"><span class="ic">{icon(ic, root)}</span>'
-                       f'<div><h3>{esc(lbl)}</h3><small>{n} {"Eintrag" if n == 1 else "Einträge"}</small></div></a>')
+        fach_tiles += (f'<a class="fach" href="aerzte.html#{s}">{icon(ic, root, "bg-icon")}'
+                       f'<div class="fach-txt"><h3>{esc(lbl)}</h3><small>{n} {"Eintrag" if n == 1 else "Einträge"}</small></div></a>')
     fach_tiles += (f'<a class="fach cta" href="aerzte.html"><div><h3>Alle {len(entries)} Praxen ansehen</h3>'
-                   f'<small>Zur Arztsuche</small></div>{icon("arrow", root)}</a>')
+                   f'<small>Zur Arztsuche</small></div>{icon("arrow", root, "arrow")}</a>')
     orte_rows = ""
     for o in ORT_SLUG:
         n = len(by_ort[o])
@@ -342,7 +343,7 @@ def build_index() -> str:
     for v in data["vorstand"]:
         name = v["name"]
         ini = re.sub(r"^((Priv\.-Doz\.|Dr\. med\.|Dr\.)\s*)+", "", name)[:1]
-        vorstand += (f'<div class="person"><div class="avatar" aria-hidden="true">{esc(ini)}</div>'
+        vorstand += (f'<div class="person">'
                      f'<span class="role">{esc(v["amt"])}</span><strong>{esc(name)}</strong>'
                      f'<span class="sub">{esc(v["fachrichtung"])}</span></div>')
     ld = json.dumps({
@@ -354,32 +355,24 @@ def build_index() -> str:
     }, ensure_ascii=False)
     body = f"""<section class="hero">
 <div class="hero-bg" aria-hidden="true"></div>
-<div class="wrap hero-grid">
-<div class="hero-copy">
+<div class="wrap hero-inner">
 <span class="eyebrow">Ärzteverein im Würmtal e.V.</span>
-<h1>Gut versorgt im <em>Würmtal.</em></h1>
+<h1>Gut versorgt im <em>Würmtal</em>.</h1>
 <p class="lead">{len(entries)} Praxen aus {len(ORT_SLUG)} Orten an einer Stelle. Suchen Sie nach Name, Fachgebiet oder Ort und finden Sie Adresse, Telefon und Praxis-Website.</p>
 <form class="search" action="aerzte.html" method="get" role="search">
 <label class="sr-only" for="hero-q">Arzt, Fachgebiet oder Ort suchen</label>
 <input id="hero-q" name="q" type="search" placeholder="z. B. Kardiologie, Planegg, Dr. Huber" autocomplete="off">
 <button type="submit">{icon("search", root, "sm")}Suchen</button>
 </form>
-<a class="btn ghost" href="#fachgebiete">Nach Fachgebiet stöbern {icon("arrow", root, "sm")}</a>
+<a class="textlink" href="#fachgebiete">Nach Fachgebiet stöbern {icon("arrow", root, "sm")}</a>
 </div>
-<div class="hero-art">{hero_art()}
-<div class="float f1">{icon("kardio", root)}<div><b>Kardiologie</b><small>{fach_counts["kardiologie"]} Praxen</small></div></div>
-<div class="float f2">{icon("pin", root)}<div><b>Gräfelfing</b><small>{len(by_ort["Gräfelfing"])} Praxen</small></div></div>
-<div class="float f3">{icon("phone", root)}<div><b>Direkt anrufen</b><small>Telefon &amp; Website</small></div></div>
-</div>
-</div>
-</section>
-<div class="stats-wrap wrap"><div class="stats">
+<div class="wrap"><div class="stats">
 <div class="stat"><b>{len(entries)}</b><span>Praxiseinträge</span></div>
 <div class="stat"><b>{len(ORT_SLUG)}</b><span>Orte im Würmtal</span></div>
 <div class="stat"><b>{sum(1 for v in fach_counts.values() if v)}</b><span>Fachgebiete</span></div>
 <div class="stat"><b>{len(listed_profile_dirs)}</b><span>Praxisprofile</span></div>
 </div></div>
-<div class="ticker" aria-hidden="true"><div class="ticker-track">{tick}</div></div>
+</section>
 
 <section class="section" id="fachgebiete">
 <div class="wrap">
@@ -412,8 +405,9 @@ def build_index() -> str:
 </div>
 </section>
 
-<section class="kontakt-wrap section" id="kontakt">
-<div class="kontakt"><div class="wrap kontakt-grid">
+<section class="kontakt" id="kontakt">
+<div class="wrap kontakt-grid">
+<div class="kontakt-info">
 <div><span class="eyebrow">Kontakt</span><h2>Fragen zum Verein?</h2></div>
 <dl>
 <div><dt>Verein</dt><dd>Ärzteverein im Würmtal e.V.</dd></div>
@@ -421,7 +415,17 @@ def build_index() -> str:
 <div><dt>Telefon</dt><dd><a href="tel:+49898571057">+49 89 857 1057</a></dd></div>
 <div><dt>Fax</dt><dd>+49 89 857 7762</dd></div>
 </dl>
-</div></div>
+</div>
+<div class="map">
+<div class="map-ph" data-consent-placeholder="external">
+<h3>Anfahrt</h3>
+<p>Die Karte stammt von OpenStreetMap. Beim Laden wird Ihre IP-Adresse an den Anbieter übertragen. Bis dahin findet keine Verbindung statt.</p>
+<button type="button" class="btn" data-consent-grant="external">Karte laden</button>
+</div>
+<iframe data-consent="external" data-src="{OSM_EMBED}" title="Karte: Bahnhofplatz 3, 82131 Gauting" loading="lazy" referrerpolicy="no-referrer" hidden></iframe>
+<div class="map-foot"><span>Bahnhofplatz 3, 82131 Gauting</span><a href="{OSM_LINK}" target="_blank" rel="noopener noreferrer">Karte bei OpenStreetMap öffnen</a></div>
+</div>
+</div>
 </section>
 <script type="application/ld+json">{ld}</script>"""
     return page("Würmtal Ärzte | Ärzteverein im Würmtal e.V.",
@@ -557,8 +561,12 @@ def build_datenschutz() -> str:
 <section class="section"><div class="wrap"><div class="prose">
 <h2>Verantwortlicher</h2>
 <address>Ärzteverein im Würmtal e.V.<br>Priv.-Doz. Dr. med. Markus G. Engelmann<br>Bahnhofplatz 3, 82131 Gauting<br>Telefon +49 89 857 1057 · Telefax +49 89 857 7762</address>
-<h2>Keine Cookies, keine Formulare, kein Tracking</h2>
+<h2>Cookies, Tracking und Formulare</h2>
 <p>Diese Website setzt keine Cookies, verwendet keine Analyse- oder Werbedienste und bietet keine Formulare, über die Sie Daten an uns senden. Die Arztsuche läuft vollständig in Ihrem Browser. Suchbegriffe werden nicht übertragen oder gespeichert.</p>
+<h2>Einwilligungsverwaltung</h2>
+<p>Beim ersten Besuch fragen wir Sie, ob externe Inhalte geladen werden dürfen. Ihre Auswahl speichern wir im localStorage Ihres Browsers (Schlüssel „avw-consent“, Gültigkeit 6 Monate). Das ist technisch erforderlich, um Ihre Entscheidung zu respektieren (§ 25 Abs. 2 Nr. 2 TDDDG). Über „Cookie-Einstellungen“ im Seitenfuß können Sie Ihre Auswahl jederzeit ändern oder widerrufen.</p>
+<h2>Karte (OpenStreetMap)</h2>
+<p>Im Kontaktbereich bieten wir eine Karte von OpenStreetMap an. Sie wird erst nach Ihrer Einwilligung geladen (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Beim Laden überträgt Ihr Browser Ihre IP-Adresse und technische Daten (z. B. Browsertyp, aufgerufene Seite) an die OpenStreetMap Foundation im Vereinigten Königreich. Ohne Einwilligung findet keine Verbindung statt. Die Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen.</p>
 <h2>Schriften</h2>
 <p>Alle Schriften werden von dieser Website selbst ausgeliefert. Es werden keine Schriftdateien von Drittanbietern geladen.</p>
 <h2>Server-Protokolle</h2>
