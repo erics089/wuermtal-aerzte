@@ -2,6 +2,8 @@
 
 Neue Website des **Ärztevereins im Würmtal e.V.** (wuermtalaerzte.de): kantiges Design in Orange, 43 Praxiseinträge in 9 Orten, Arztsuche mit Filter, Praxisprofile, Impressum und Datenschutz.
 
+Live-Vorschau: https://erics089.github.io/wuermtal-aerzte/
+
 Die Seite ist statisch (HTML, CSS, etwas JavaScript), braucht keine Datenbank und keine Abhängigkeiten. Der Generator nutzt nur die Python-Standardbibliothek.
 
 ## Schnellstart
