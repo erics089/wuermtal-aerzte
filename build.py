@@ -151,6 +151,10 @@ fach_counts = {s: sum(1 for e in entries if s in e["slugs"]) for s, *_ in FACHGE
 # --------------------------------------------------------------------------- HTML-Bausteine
 
 
+POS = ["60% 40%", "20% 60%", "85% 30%", "45% 75%", "70% 20%", "10% 35%", "90% 65%", "35% 45%", "55% 85%"]
+ORBS = '<div class="orbs" aria-hidden="true"><i></i><i></i><i></i></div>'
+
+
 def icon(name: str, root: str, cls: str = "") -> str:
     return (f'<svg class="icon {cls}" aria-hidden="true" focusable="false">'
             f'<use href="{root}assets/icons.svg#i-{name}"/></svg>')
@@ -198,7 +202,7 @@ def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs
 
 def header(root: str, active: str = "") -> str:
     def a(href: str, label: str, key: str) -> str:
-        cur = ' aria-current="page"' if active == key else ""
+        cur = ' aria-current="page"' if key and active == key else ""
         return f'<a href="{href}"{cur}>{label}</a>'
     return f"""<header class="site-header">
 <div class="wrap bar">
@@ -254,7 +258,7 @@ def consent_markup(root: str) -> str:
 
 def footer(root: str) -> str:
     orte = "".join(f'<li><a href="{root}htm/aerzte_{ORT_SLUG[o]}.htm">{o}</a></li>' for o in ORT_SLUG)
-    return f"""<footer class="site-footer">
+    return f"""<footer class="site-footer wave-in">
 <div class="wrap footer-grid">
 <div>
 <a class="brand" href="{root}index.html">{brand_mark(root)}</a>
@@ -285,15 +289,16 @@ def page(title, desc, root, path, body, active="", noindex=False, abs_assets=Fal
     return hd + header(root, active) + f'<main id="main">\n{body}\n</main>\n' + footer(root)
 
 
-def page_head(root, crumbs, h1, lead="", bg_word=""):
+def page_head(root, crumbs, h1, lead="", bg_word="", symbol="", pos="60% 40%"):
     cs = ""
     for i, (label, href) in enumerate(crumbs):
         if i:
             cs += '<span aria-hidden="true">/</span>'
         cs += f'<a href="{href}">{esc(label)}</a>' if href else f"<span>{esc(label)}</span>"
-    bg = ""
     lead_html = f"<p>{lead}</p>" if lead else ""
-    return f'<section class="page-head">{bg}<div class="wrap"><nav class="crumbs" aria-label="Brotkrumen">{cs}</nav><h1>{h1}</h1>{lead_html}</div></section>'
+    sym = icon(symbol, root, "head-icon") if symbol else ""
+    return (f'<section class="page-head" style="--bg-pos:{pos}">{ORBS}{sym}<div class="wrap">'
+            f'<nav class="crumbs" aria-label="Brotkrumen">{cs}</nav><h1>{h1}</h1>{lead_html}</div></section>')
 
 
 def card(e: dict, root: str) -> str:
@@ -312,6 +317,7 @@ def card(e: dict, root: str) -> str:
         foot += f'<a href="{root}{pm["pfad"]}">Praxisprofil {icon("arrow", root, "sm")}</a>'
     text = " ".join([e["name"], e["fachrichtung"], adr, e["ort"]])
     return (f'<article class="card" data-ort="{ORT_SLUG[e["ort"]]}" data-fach="{" ".join(slugs)}" data-text="{esc(text)}">'
+            f'{icon(main_icon(slugs), root, "bg-icon")}'
             f'<div class="card-top"><div class="card-icon">{icon(main_icon(slugs), root)}</div>'
             f'<div><h3>{esc(e["name"])}</h3><div class="tags">{tags}</div></div></div>'
             f'<ul>{"".join(li)}</ul><div class="card-foot">{foot}</div></article>')
@@ -355,6 +361,8 @@ def build_index() -> str:
     }, ensure_ascii=False)
     body = f"""<section class="hero">
 <div class="hero-bg" aria-hidden="true"></div>
+{ORBS}
+<div class="hero-icons" aria-hidden="true">{icon("augen", root, "hi1")}{icon("kardio", root, "hi2")}{icon("lunge", root, "hi3")}</div>
 <div class="wrap hero-inner">
 <span class="eyebrow">Ärzteverein im Würmtal e.V.</span>
 <h1>Gut versorgt im <em>Würmtal</em>.</h1>
@@ -374,7 +382,7 @@ def build_index() -> str:
 </div></div>
 </section>
 
-<section class="section" id="fachgebiete">
+<section class="section glow wave-in" id="fachgebiete">
 <div class="wrap">
 <div class="section-head"><div><span class="eyebrow">Fachgebiete</span><h2>Der richtige Arzt<br>für jedes Anliegen.</h2></div>
 <p>Wählen Sie ein Fachgebiet und sehen Sie sofort alle passenden Praxen im Würmtal.</p></div>
@@ -382,7 +390,7 @@ def build_index() -> str:
 </div>
 </section>
 
-<section class="section alt" id="orte">
+<section class="section alt wave-in" id="orte">
 <div class="wrap">
 <div class="section-head"><div><span class="eyebrow">Orte</span><h2>Neun Orte.<br>Ein Verzeichnis.</h2></div>
 <p>Von Gauting bis Germering: Die Praxen nach Standort, mit Anzahl der Einträge.</p></div>
@@ -390,7 +398,7 @@ def build_index() -> str:
 </div>
 </section>
 
-<section class="section" id="verein">
+<section class="section glow wave-in" id="verein">
 <div class="wrap">
 <div class="verein-grid">
 <div class="about">
@@ -405,7 +413,8 @@ def build_index() -> str:
 </div>
 </section>
 
-<section class="kontakt" id="kontakt">
+<section class="kontakt wave-in" id="kontakt">
+<div class="kontakt-bg" aria-hidden="true"></div>
 <div class="wrap kontakt-grid">
 <div class="kontakt-info">
 <div><span class="eyebrow">Kontakt</span><h2>Fragen zum Verein?</h2></div>
@@ -443,8 +452,8 @@ def build_search() -> str:
         for o in ORT_SLUG)
     cards = "".join(card(e, root) for e in sorted(entries, key=lambda e: (e["ort"], e["name"])))
     body = page_head(root, [("Start", "index.html"), ("Ärzte finden", "")], "Ärzte finden",
-                     "Durchsuchen Sie alle Einträge nach Name, Fachgebiet, Straße oder Ort.", "SUCHE") + f"""
-<section class="section"><div class="wrap">
+                     "Durchsuchen Sie alle Einträge nach Name, Fachgebiet, Straße oder Ort.", "SUCHE", "search", "50% 55%") + f"""
+<section class="section glow wave-in"><div class="wrap">
 <form class="toolbar" role="search">
 <div class="search"><label class="sr-only" for="q">Suchbegriff</label>
 <input id="q" type="search" placeholder="Name, Fachgebiet, Straße oder Ort" autocomplete="off">
@@ -469,8 +478,9 @@ def build_ort(o: str) -> str:
         for x in ORT_SLUG)
     n = len(lst)
     body = page_head(root, [("Start", root + "index.html"), ("Ärzte finden", root + "aerzte.html"), (o, "")], o,
-                     f'{n} {"Praxiseintrag" if n == 1 else "Praxiseinträge"} im Verzeichnis des Ärztevereins.', o.upper()) + f"""
-<section class="section"><div class="wrap">
+                     f'{n} {"Praxiseintrag" if n == 1 else "Praxiseinträge"} im Verzeichnis des Ärztevereins.', o.upper(),
+                     "pin", POS[list(ORT_SLUG).index(o) % len(POS)]) + f"""
+<section class="section glow wave-in"><div class="wrap">
 <div class="cards">{cards}</div>
 <div class="neighbors"><span class="toolbar-label">Weitere Orte</span><div class="chips">{others}</div></div>
 </div></section>"""
@@ -494,8 +504,10 @@ def build_profile(slug: str, p: dict) -> str:
         tabs = '<nav class="tabs" aria-label="Profilbereiche">' + "".join(
             f'<a href="{s["file"]}"{" aria-current=page" if s["file"] == p["file"] else ""}>{esc(tab_label(s))}</a>' for s in siblings) + "</nav>"
     mainp = profile_main(slug)
+    sp = fach_slugs(mainp["fachrichtung"]) or fach_slugs(p["fachrichtung"])
+    sym = main_icon(sp)
+    ref = mainp if mainp["telefon"] or mainp["email"] else p
     kv = [("Anschrift", esc(p["anschrift"]))]
-    src = p if p["telefon"] else mainp
     if p["telefon"]:
         kv.append(("Telefon", f'<a href="tel:{tel_from_profile(p["telefon"])}">{esc(p["telefon"])}</a>'))
     if p["fax"]:
@@ -503,25 +515,39 @@ def build_profile(slug: str, p: dict) -> str:
     if p["email"]:
         kv.append(("E-Mail", f'<a href="mailto:{esc(p["email"])}">{esc(p["email"])}</a>'))
     kv_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in kv)
-    blocks = f'<div class="block"><h2>{icon("pin", root)}Kontakt</h2><dl class="kv">{kv_html}</dl></div>'
+    bg = icon(sym, root, "bg-icon")
+    blocks = f'<div class="block">{bg}<h2>{icon("pin", root)}Kontakt</h2><dl class="kv">{kv_html}</dl></div>'
+    actions = ""
+    if ref["telefon"]:
+        actions += f'<a class="btn" href="tel:{tel_from_profile(ref["telefon"])}">{icon("phone", root, "sm")}Anrufen</a>'
+    if ref["email"]:
+        actions += f'<a class="btn outline" href="mailto:{esc(ref["email"])}">{icon("mail", root, "sm")}E-Mail schreiben</a>'
+    actions += f'<a class="btn outline" href="{root}htm/aerzte_{ORT_SLUG[ort]}.htm">Weitere Praxen in {esc(ort)}</a>'
+    actions = f'<div class="actions">{actions}</div>'
     left = ""
     if p["sprechzeiten"]:
-        left += (f'<div class="block"><h2>{icon("clock", root)}Sprechzeiten</h2><ul class="hours">'
-                 + "".join(f"<li>{esc(h)}</li>" for h in p["sprechzeiten"]) + "</ul></div>")
+        rows = ""
+        for h in p["sprechzeiten"]:
+            m = re.match(r"^(.*?)\s+(\d{1,2}:\d{2}.*)$", h)
+            rows += (f'<li><span class="day">{esc(m.group(1))}</span><span class="time">{esc(m.group(2))}</span></li>' if m
+                     else f'<li><span class="day">{esc(h)}</span><span class="time"></span></li>')
+        left += f'<div class="block">{icon("clock", root, "bg-icon")}<h2>{icon("clock", root)}Sprechzeiten</h2><ul class="hours">{rows}</ul></div>'
     if p["leistungen"]:
-        left += (f'<div class="block"><h2>{icon("check", root)}Leistungen & Schwerpunkte</h2><ul class="checks">'
+        left += (f'<div class="block">{icon(sym, root, "bg-icon")}<h2>{icon("check", root)}Leistungen & Schwerpunkte</h2><ul class="checks">'
                  + "".join(f"<li>{icon('check', root, 'sm')}<span>{esc(l)}</span></li>" for l in p["leistungen"]) + "</ul></div>")
     if not left:
-        left = (f'<div class="block"><h2>{icon("info", root)}Profil</h2><p>Zu dieser Seite liegen keine weiteren Angaben vor. '
+        left = (f'<div class="block">{bg}<h2>{icon("info", root)}Profil</h2><p>Zu dieser Seite liegen keine weiteren Angaben vor. '
                 f'Kontaktdaten finden Sie rechts, aktuelle Informationen erhalten Sie direkt in der Praxis.</p></div>')
     if len(siblings) > 1 and p is not mainp:
-        blocks += f'<a class="btn ghost" href="{mainp["file"]}">Zurück zum Praxisprofil</a>'
+        blocks += f'<a class="btn outline" href="{mainp["file"]}">Zurück zum Praxisprofil</a>'
     note = (f'<div class="note">{icon("info", root, "sm")}<p>Ältere Profilseite des Vereins. Bitte bestätigen Sie Adresse, '
             f'Sprechzeiten und Leistungen direkt in der Praxis.</p></div>')
     fach = p["fachrichtung"] if "Keine Fachrichtung" not in p["fachrichtung"] else "Fachrichtung nicht angegeben"
+    pos = POS[sum(map(ord, slug)) % len(POS)]
     body = page_head(root, [("Start", root + "index.html"), (ort, root + f"htm/aerzte_{ORT_SLUG[ort]}.htm"), (base_name, "")],
-                     esc(base_name), esc(fach), ort.upper()) + f"""
-<section class="section"><div class="wrap">
+                     esc(base_name), esc(fach), ort.upper(), sym, pos) + f"""
+<section class="section glow wave-in"><div class="wrap">
+{actions}
 {tabs}
 <div class="profile"><div style="display:grid;gap:1.1rem">{left}</div><div style="display:grid;gap:1.1rem">{blocks}</div></div>
 {note}
@@ -533,8 +559,8 @@ def build_profile(slug: str, p: dict) -> str:
 
 def build_impressum() -> str:
     root = "../"
-    body = page_head(root, [("Start", root + "index.html"), ("Impressum", "")], "Impressum") + f"""
-<section class="section"><div class="wrap"><div class="prose">
+    body = page_head(root, [("Start", root + "index.html"), ("Impressum", "")], "Impressum", symbol="info", pos="75% 70%") + f"""
+<section class="section glow wave-in"><div class="wrap"><div class="prose">
 <h2>Anbieter</h2>
 <address>Ärzteverein im Würmtal e.V.<br>Bahnhofplatz 3<br>82131 Gauting</address>
 <h2>Vertreten durch</h2>
@@ -557,8 +583,8 @@ def build_impressum() -> str:
 
 def build_datenschutz() -> str:
     root = "../"
-    body = page_head(root, [("Start", root + "index.html"), ("Datenschutz", "")], "Datenschutz") + f"""
-<section class="section"><div class="wrap"><div class="prose">
+    body = page_head(root, [("Start", root + "index.html"), ("Datenschutz", "")], "Datenschutz", symbol="quality", pos="35% 30%") + f"""
+<section class="section glow wave-in"><div class="wrap"><div class="prose">
 <h2>Verantwortlicher</h2>
 <address>Ärzteverein im Würmtal e.V.<br>Priv.-Doz. Dr. med. Markus G. Engelmann<br>Bahnhofplatz 3, 82131 Gauting<br>Telefon +49 89 857 1057 · Telefax +49 89 857 7762</address>
 <h2>Cookies, Tracking und Formulare</h2>
