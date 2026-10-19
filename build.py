@@ -158,8 +158,10 @@ def icon(name: str, root: str, cls: str = "") -> str:
 
 def brand_mark() -> str:
     return ('<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">'
-            '<path d="M0 0h38l10 10v38H10L0 38z" fill="var(--orange)"/>'
-            '<path d="M19 11h10v8h8v10h-8v8H19v-8h-8V19h8z" fill="var(--on-orange)"/></svg>')
+            '<defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa662"/>'
+            '<stop offset="1" stop-color="#ee6216"/></linearGradient></defs>'
+            '<rect width="48" height="48" rx="13" fill="url(#bm)"/>'
+            '<path d="M24 12v24M12 24h24" stroke="#fff8f2" stroke-width="3" stroke-linecap="round"/></svg>')
 
 
 def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs_assets: bool = False) -> str:
@@ -201,7 +203,7 @@ def header(root: str, active: str = "") -> str:
         cur = ' aria-current="page"' if active == key else ""
         return f'<a href="{href}"{cur}>{label}</a>'
     return f"""<header class="site-header">
-<div class="wrap bar">
+<div class="bar">
 <a class="brand" href="{root}index.html" aria-label="Würmtal Ärzte – Startseite">{brand_mark()}
 <span><span class="brand-name">Würmtal Ärzte</span><span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span></a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
@@ -284,33 +286,38 @@ def card(e: dict, root: str) -> str:
 
 
 def hero_art() -> str:
-    xs = [58 + i * 61 for i in range(9)]
-    base = 392
-    d = f"M18,{base}"
+    xs = [60 + i * 60 for i in range(9)]
+    base = 400
+    d = f"M24,{base}"
     nodes = labels = ""
     for i, (x, o) in enumerate(zip(xs, PULSE_ORDER)):
         n = len(by_ort[o])
-        d += f" L{x - 9},{base}"
+        d += f" L{x - 12},{base}"
         if i % 3 == 1:
-            d += f" L{x - 3},{base - 70} L{x + 3},{base + 40}"
-        d += f" L{x + 9},{base}"
-        nodes += f'<rect x="{x - 6}" y="{base - 6}" width="12" height="12" fill="#17110d"/><rect x="{x - 3}" y="{base - 3}" width="6" height="6" fill="#fff8f2"/>'
+            d += f" L{x - 5},{base - 62} L{x + 3},{base + 34} L{x + 8},{base}"
+        d += f" L{x + 12},{base}"
         bar = 6 + n * 4
-        nodes += f'<rect x="{x - 3}" y="{base - 22 - bar}" width="6" height="{bar}" fill="#17110d" opacity=".9"/>'
-        labels += (f'<text transform="translate({x + 4},{base + 24}) rotate(55)" font-family="JetBrains Mono,monospace" '
-                   f'font-size="12" letter-spacing="1.2" fill="#17110d">{o.upper()}</text>')
-    d += " L582,%d" % base
+        nodes += (f'<line x1="{x}" y1="{base - 18}" x2="{x}" y2="{base - 18 - bar}" stroke="#fff8f2" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>'
+                  f'<circle cx="{x}" cy="{base}" r="7" fill="#fff8f2"/><circle cx="{x}" cy="{base}" r="2.6" fill="#f26a1b"/>')
+        labels += (f'<text transform="translate({x + 3},{base + 24}) rotate(55)" font-family="JetBrains Mono,monospace" '
+                   f'font-size="11" letter-spacing="1.4" fill="#fff8f2" fill-opacity=".9">{o.upper()}</text>')
+    d += f" L576,{base}"
     return f"""<svg viewBox="0 0 600 600" role="img" aria-label="Schematische Pulslinie durch die neun Orte des Würmtals">
-<defs><pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v14" stroke="#17110d" stroke-opacity=".14" stroke-width="2"/></pattern></defs>
-<path d="M0 0h556l44 44v556H44L0 556z" fill="#ff5a12"/>
-<path d="M0 0h556l44 44v556H44L0 556z" fill="url(#hatch)"/>
-<path d="M300 40h80v80h110v70H380v90h-80v-90H190v-70h110z" fill="#17110d"/>
-<path d="M308 48h64v128h128v64H372v128h-64V240H188v-64h120z" fill="none" stroke="#ff5a12" stroke-width="2" opacity=".0"/>
-<path d="M18 392H582" stroke="#17110d" stroke-opacity=".28" stroke-width="2" stroke-dasharray="3 6"/>
-<path d="{d}" fill="none" stroke="#fff8f2" stroke-width="5" stroke-linejoin="miter" stroke-linecap="square"/>
+<defs>
+<linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb985"/><stop offset=".55" stop-color="#f7792a"/><stop offset="1" stop-color="#e85a10"/></linearGradient>
+<radialGradient id="hglow" cx=".25" cy=".15" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="600" height="600" rx="40" fill="url(#hg)"/>
+<rect width="600" height="600" rx="40" fill="url(#hglow)"/>
+<g fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1.2">
+<circle cx="360" cy="190" r="70"/><circle cx="360" cy="190" r="115"/><circle cx="360" cy="190" r="165"/><circle cx="360" cy="190" r="220"/>
+</g>
+<path d="M360 120v140M290 190h140" stroke="#fff8f2" stroke-width="3" stroke-linecap="round"/>
+<rect x="318" y="148" width="84" height="84" rx="22" fill="#fff" fill-opacity=".12" stroke="#fff" stroke-opacity=".5" stroke-width="1.2"/>
+<path d="M24 {base}H576" stroke="#fff" stroke-opacity=".35" stroke-width="1.2" stroke-dasharray="2 7" stroke-linecap="round"/>
+<path d="{d}" fill="none" stroke="#fff8f2" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
 {nodes}{labels}
-<text x="28" y="44" font-family="JetBrains Mono,monospace" font-size="12" letter-spacing="2" fill="#17110d">WÜRM / SCHEMATISCH</text>
-<text x="28" y="64" font-family="JetBrains Mono,monospace" font-size="12" letter-spacing="2" fill="#17110d" opacity=".7">{len(entries)} PRAXISEINTRÄGE · 9 ORTE</text>
+<text x="40" y="58" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2.4" fill="#7a2f08" fill-opacity=".85">WÜRM · SCHEMATISCH</text>
 </svg>"""
 
 
@@ -324,7 +331,7 @@ def build_index() -> str:
         n = fach_counts[s]
         if not n:
             continue
-        fach_tiles += (f'<a class="fach" href="aerzte.html#{s}">{icon(ic, root)}'
+        fach_tiles += (f'<a class="fach" href="aerzte.html#{s}"><span class="ic">{icon(ic, root)}</span>'
                        f'<div><h3>{esc(lbl)}</h3><small>{n} {"Eintrag" if n == 1 else "Einträge"}</small></div></a>')
     fach_tiles += (f'<a class="fach cta" href="aerzte.html"><div><h3>Alle {len(entries)} Praxen ansehen</h3>'
                    f'<small>Zur Arztsuche</small></div>{icon("arrow", root)}</a>')
@@ -362,15 +369,19 @@ def build_index() -> str:
 </form>
 <a class="btn ghost" href="#fachgebiete">Nach Fachgebiet stöbern {icon("arrow", root, "sm")}</a>
 </div>
-<div class="hero-art">{hero_art()}</div>
+<div class="hero-art">{hero_art()}
+<div class="float f1">{icon("kardio", root)}<div><b>Kardiologie</b><small>{fach_counts["kardiologie"]} Praxen</small></div></div>
+<div class="float f2">{icon("pin", root)}<div><b>Gräfelfing</b><small>{len(by_ort["Gräfelfing"])} Praxen</small></div></div>
+<div class="float f3">{icon("phone", root)}<div><b>Direkt anrufen</b><small>Telefon &amp; Website</small></div></div>
 </div>
-<div class="stats">
+</div>
+</section>
+<div class="stats-wrap wrap"><div class="stats">
 <div class="stat"><b>{len(entries)}</b><span>Praxiseinträge</span></div>
 <div class="stat"><b>{len(ORT_SLUG)}</b><span>Orte im Würmtal</span></div>
 <div class="stat"><b>{sum(1 for v in fach_counts.values() if v)}</b><span>Fachgebiete</span></div>
 <div class="stat"><b>{len(listed_profile_dirs)}</b><span>Praxisprofile</span></div>
-</div>
-</section>
+</div></div>
 <div class="ticker" aria-hidden="true"><div class="ticker-track">{tick}</div></div>
 
 <section class="section" id="fachgebiete">
@@ -404,8 +415,8 @@ def build_index() -> str:
 </div>
 </section>
 
-<section class="kontakt" id="kontakt">
-<div class="section"><div class="wrap kontakt-grid">
+<section class="kontakt-wrap section" id="kontakt">
+<div class="kontakt"><div class="wrap kontakt-grid">
 <div><span class="eyebrow">Kontakt</span><h2>Fragen zum Verein?</h2></div>
 <dl>
 <div><dt>Verein</dt><dd>Ärzteverein im Würmtal e.V.</dd></div>
