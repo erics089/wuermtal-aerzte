@@ -1,0 +1,880 @@
+{
+  "erfassungsdatum": "2026-10-19",
+  "quelle": "https://www.wuermtalaerzte.de/",
+  "orte": {
+    "Gauting": [
+      {
+        "name": "Priv. Doz. Dr. med. Markus Engelmann",
+        "fachrichtung": "Innere Medizin, Kardiologie",
+        "adresse": "Bahnhofplatz 3",
+        "telefon": "857 10 57",
+        "webseite": "www.praxisengelmann.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Stefan Heindl",
+        "fachrichtung": "Innere Medizin, Pneumologie",
+        "adresse": "Bahnhofstr. 22",
+        "telefon": "850 10 95",
+        "webseite": "pneumo-gauting.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Mona Pfänder-Schnurr",
+        "fachrichtung": "Neurologie (Privatpraxis)",
+        "adresse": "Münchener Str. 4a",
+        "telefon": "189 309 15",
+        "webseite": "www.neurologie-wuermtal.de",
+        "profil_alt": ""
+      }
+    ],
+    "Germering": [
+      {
+        "name": "Dr. med. Bernd Lautenschütz",
+        "fachrichtung": "Innere Medizin, Kardiologie",
+        "adresse": "Hartstraße 52–54, 82110 Germering",
+        "telefon": "800 70 79-0",
+        "webseite": "www.medicenter-germering.de",
+        "profil_alt": ""
+      }
+    ],
+    "Gräfelfing": [
+      {
+        "name": "Dr. Andreas Behrend und Dr. Peter Weöres",
+        "fachrichtung": "Urologie",
+        "adresse": "Scharnitzerstr. 1, 82166 Gräfelfing",
+        "telefon": "0176 / 21 28 49 08",
+        "webseite": "www.urologe-graefelfing.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Dr. rer. nat. Markus Eisenburg",
+        "fachrichtung": "Neurochirurgie",
+        "adresse": "Bahnhofstr. 5",
+        "telefon": "89 82 02 00",
+        "webseite": "dreisenburg.wordpress.com",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Richard Fuchs",
+        "fachrichtung": "Augenheilkunde",
+        "adresse": "Bahnhofstr. 95",
+        "telefon": "85 35 36",
+        "webseite": "",
+        "profil_alt": "fuchs"
+      },
+      {
+        "name": "Dr. med. Petra Hasford, MPH / Dr. Dr. med. J. Thomas Bierwirth",
+        "fachrichtung": "Dermatologie, Allergologie",
+        "adresse": "Bahnhofstr. 98a",
+        "telefon": "85 466 900",
+        "webseite": "hautarzt-graefelfing.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Dietmar Huber",
+        "fachrichtung": "Gynäkologie",
+        "adresse": "Bahnhofstr. 98",
+        "telefon": "87 87 85",
+        "webseite": "www.frauenarzt-dr-huber.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. Lars Kellner",
+        "fachrichtung": "Kinder- und Jugendmedizin",
+        "adresse": "Bahnhofstr. 13",
+        "telefon": "854 39 14",
+        "webseite": "",
+        "profil_alt": "kellner"
+      },
+      {
+        "name": "Dr. med. Peter Lehmann",
+        "fachrichtung": "Innere Medizin",
+        "adresse": "Bahnhofstr. 17",
+        "telefon": "85 31 19",
+        "webseite": "",
+        "profil_alt": "lehmann"
+      },
+      {
+        "name": "Dr. Detlef Mansel / Dr. Ursula Mansel",
+        "fachrichtung": "Chirurgie, Orthopädie, Unfallchirurgie, Sportmedizin, Proktologie und weitere Schwerpunkte",
+        "adresse": "Bahnhofstr. 7a",
+        "telefon": "893 55 000",
+        "webseite": "mansel-graefelfing.de",
+        "profil_alt": "mansel-detlef"
+      },
+      {
+        "name": "Dr. med. Wolfgang Möhrle",
+        "fachrichtung": "Innere Medizin",
+        "adresse": "Bahnhofstr. 98a (2. OG)",
+        "telefon": "85 83 63 84",
+        "webseite": "",
+        "profil_alt": "moehrle"
+      },
+      {
+        "name": "Dr. med. Jörg Nill / Dr. med. Stephanie Eder",
+        "fachrichtung": "Gynäkologie",
+        "adresse": "Bahnhofstraße 93",
+        "telefon": "85 25 29",
+        "webseite": "www.nill-eder.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Gottfried Fischer / Prof. Dr. med. Carsten Otto",
+        "fachrichtung": "Innere Medizin, Gastroenterologie, Endokrinologie, Diabetologie",
+        "adresse": "Bahnhofstr. 98",
+        "telefon": "85 52 80",
+        "webseite": "www.internist-dr-otto.de",
+        "profil_alt": "fischer"
+      },
+      {
+        "name": "Kai Reichert / Dr. Bernhard Müllauer",
+        "fachrichtung": "Allgemeinmedizin",
+        "adresse": "Würmstr. 37",
+        "telefon": "85 42 576",
+        "webseite": "www.a-wie-arzt.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. Heidrun Reißenweber-Hewel",
+        "fachrichtung": "Japanische Medizin",
+        "adresse": "Bahnhofstr. 108",
+        "telefon": "41 61 74 61",
+        "webseite": "www.japanische-medizin-muenchen.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Lucas Schraudenbach",
+        "fachrichtung": "Urologie",
+        "adresse": "Bahnhofstr. 103",
+        "telefon": "85 10 11",
+        "webseite": "",
+        "profil_alt": "schraudenbach"
+      },
+      {
+        "name": "Dr. med. Michael Schreiner / Dr. med. Stefan Nitsch",
+        "fachrichtung": "Hals-Nasen-Ohren-Heilkunde",
+        "adresse": "Bahnhofstr. 98a",
+        "telefon": "85 33 30 / 89 89 19 89",
+        "webseite": "",
+        "profil_alt": "schreiner"
+      },
+      {
+        "name": "Dr. med. Tobias Rupprecht",
+        "fachrichtung": "Neurologie",
+        "adresse": "Bahnhofstr. 103",
+        "telefon": "85 30 10",
+        "webseite": "www.neurologie-graefelfing.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Min-Seop Son",
+        "fachrichtung": "Allgemein-, Viszeral- und Adipositaschirurgie",
+        "adresse": "Ruffini Allee 17, 82166 Gräfelfing",
+        "telefon": "89 / 85 87 - 400",
+        "webseite": "www.chirurgie-wolfartklinik.de",
+        "profil_alt": ""
+      }
+    ],
+    "Krailling": [
+      {
+        "name": "Dr. med. R. Aulehner",
+        "fachrichtung": "Innere Medizin",
+        "adresse": "Margaretenstr. 52",
+        "telefon": "550 58 6 36",
+        "webseite": "www.dr-aulehner.de",
+        "profil_alt": "clemm_aulehner"
+      },
+      {
+        "name": "Dr. med. S. Brechenmacher",
+        "fachrichtung": "Allgemeinmedizin",
+        "adresse": "Muggenthalerstr. 5",
+        "telefon": "857 71 72",
+        "webseite": "www.dr-brechenmacher.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. R. Höhn",
+        "fachrichtung": "Allgemeinmedizin",
+        "adresse": "Margaretenstr. 58",
+        "telefon": "857 29 20",
+        "webseite": "www.mirayantra.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. M. Lyding",
+        "fachrichtung": "Gynäkologie",
+        "adresse": "Margaretenstr. 52",
+        "telefon": "895 28 80",
+        "webseite": "www.dr-lyding.de",
+        "profil_alt": "lyding"
+      }
+    ],
+    "Lochham": [
+      {
+        "name": "Dr. med. Alexander Kruchen / Dr. med. Naomi Schell",
+        "fachrichtung": "Innere Medizin, Allgemeinmedizin",
+        "adresse": "Jahnplatz 1–3",
+        "telefon": "871 39 065 / 871 39 073",
+        "webseite": "www.praxis-kruchen-stuebner.de",
+        "profil_alt": ""
+      }
+    ],
+    "Martinsried": [
+      {
+        "name": "Prof. Dr. med. Jörg Schelling / Dr. med. Dipl.-Ing. Jens Schelling",
+        "fachrichtung": "Allgemeinmedizin, Reisemedizin",
+        "adresse": "Röntgenstr. 2, 82152 Martinsried",
+        "telefon": "857 55 11",
+        "webseite": "www.gemeinschaftspraxis-martinsried.de",
+        "profil_alt": "schelling"
+      },
+      {
+        "name": "Dres. med. Kora und Volker Brand",
+        "fachrichtung": "Gastroenterologie, Urologie",
+        "adresse": "Röntgenstr. 2, 82152 Martinsried",
+        "telefon": "244 10 02",
+        "webseite": "brand-praxis.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Kerstin Lauer",
+        "fachrichtung": "Diagnostik und Therapie des Bewegungsapparates",
+        "adresse": "Röntgenstr. 2, 82152 Martinsried",
+        "telefon": "858 52 892",
+        "webseite": "www.dr-kerstin-lauer.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Richard Pecka",
+        "fachrichtung": "Spezielle Schmerztherapie",
+        "adresse": "Röntgenstr. 2, 82152 Martinsried",
+        "telefon": "897 43 45 7",
+        "webseite": "www.schmerztherapiepraxis.de",
+        "profil_alt": ""
+      }
+    ],
+    "Neuried": [
+      {
+        "name": "Dr. med. Martina Tuexen-Mengedoht",
+        "fachrichtung": "Allgemeinmedizin",
+        "adresse": "Ammerseestr. 2",
+        "telefon": "75 80 90",
+        "webseite": "praxis-tuexen-mengedoht.de",
+        "profil_alt": ""
+      }
+    ],
+    "Planegg": [
+      {
+        "name": "Dr. med. Anja Leiber",
+        "fachrichtung": "Dermatologie, Allergologie, Lasermedizin, Ästhetik",
+        "adresse": "Hubertusstr. 7",
+        "telefon": "859 96 95",
+        "webseite": "www.hautarztpraxis-leiber.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Juri Gewitsch",
+        "fachrichtung": "Allgemeinmedizin",
+        "adresse": "Poststr. 4",
+        "telefon": "859 42 59",
+        "webseite": "",
+        "profil_alt": "gewitsch"
+      },
+      {
+        "name": "Dr. med. Ines Jakobs-Klenk",
+        "fachrichtung": "Augenheilkunde",
+        "adresse": "Bahnhofstr. 19",
+        "telefon": "85 99 000",
+        "webseite": "www.augenarztpraxis-planegg.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Michael Kleine",
+        "fachrichtung": "Fachrichtung auf der Übersichtsseite nicht genannt",
+        "adresse": "Egenhofenstr. 18",
+        "telefon": "85 99 338",
+        "webseite": "",
+        "profil_alt": "kleine"
+      },
+      {
+        "name": "Dr. med. Axel Kriegbaum",
+        "fachrichtung": "Praktische Medizin",
+        "adresse": "Bahnhofstr. 21",
+        "telefon": "854 28 35",
+        "webseite": "www.axelkriegbaum.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Clemens Schmid / Dr. med. Christoph Sukopp",
+        "fachrichtung": "Orthopädie, spezielle orthopädische Chirurgie",
+        "adresse": "Bahnhofstr. 41",
+        "telefon": "899 61 10",
+        "webseite": "www.ortho-plan.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Friederike Stalf / Dr. med. Michael Knoop",
+        "fachrichtung": "Innere Medizin, Allgemeinmedizin",
+        "adresse": "Hubertusstr. 1b",
+        "telefon": "859 98 98",
+        "webseite": "",
+        "profil_alt": "stalf_knoop"
+      },
+      {
+        "name": "Dr. med. A. Trammer / Dr. med. R. Greber",
+        "fachrichtung": "Chirurgie und Kinderchirurgie",
+        "adresse": "Bahnhofstr. 42",
+        "telefon": "856 99383 / 856 99384",
+        "webseite": "",
+        "profil_alt": "trammer_greber"
+      },
+      {
+        "name": "Dr. med. Martin Welcker",
+        "fachrichtung": "Innere Medizin, Rheumatologie, Chirotherapie, Osteologie",
+        "adresse": "Bahnhofstr. 32",
+        "telefon": "893 56 69 - 15",
+        "webseite": "www.rheuma-praxis.com",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Hiller / Dr. med. Leuchten",
+        "fachrichtung": "HNO-Heilkunde, Allergologie",
+        "adresse": "Bräuhausstr. 4a",
+        "telefon": "89 85 96 262",
+        "webseite": "www.planegghno.de",
+        "profil_alt": ""
+      },
+      {
+        "name": "Dr. med. Westermeier / Dr. med. Siegmund",
+        "fachrichtung": "Allgemeinmedizin, Innere Medizin und Kardiologie",
+        "adresse": "Bahnhofstr. 19a",
+        "telefon": "89 85 98 230",
+        "webseite": "www.praxis-ws.de",
+        "profil_alt": ""
+      }
+    ],
+    "Stockdorf": [
+      {
+        "name": "Dr. med. Johanna Saller",
+        "fachrichtung": "Allgemeinmedizin, Naturheilverfahren, Akupunktur, Homöopathie, Palliativmedizin",
+        "adresse": "Bahnstr. 3",
+        "telefon": "856 610 10",
+        "webseite": "",
+        "profil_alt": "saller"
+      }
+    ]
+  },
+  "profile": [
+    {
+      "pfad": "htm/aerzte/fuchs/fuchs.htm",
+      "name": "Dr. med. Richard Fuchs",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Augenheilkunde",
+      "anschrift": "Bahnhofstr. 95, 82166 Gräfelfing",
+      "telefon": "089 / 85 35 36",
+      "fax": "089 / 85 52 60",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/kellner/kellner.htm",
+      "name": "Dr. Lars Kellner",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Kinderheilkunde, Homöopathie",
+      "anschrift": "Bahnhofstr. 13, 82166 Gräfelfing",
+      "telefon": "089 / 854 39 14",
+      "fax": "089 / 898 90 383",
+      "sprechzeiten": [
+        "Mo–Fr 08:00–12:00",
+        "Mo, Di, Do 14:00–16:00",
+        "Weitere Termine nach Absprache"
+      ],
+      "email": "praxis@kinderaerzteimnetz.de",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/kellner/kellner_2.htm",
+      "name": "Dr. Lars Kellner – Leistungen",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Kinder- und Jugendmedizin",
+      "anschrift": "Bahnhofstr. 13, 82166 Gräfelfing",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "Vorsorgeuntersuchungen im Kindes- und Jugendalter",
+        "Entwicklungsdiagnostik",
+        "Jugendarbeitsschutzuntersuchungen",
+        "Untersuchungen des Hörvermögens und des Mittelohrs",
+        "Seh- und Hörtests",
+        "Labor- und Allergiediagnostik",
+        "Lungenfunktion und EKG",
+        "Schutz- und Reiseimpfungen",
+        "Homöopathische Angebote und Eigenblutbehandlung laut Altseite"
+      ],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/lehmann/lehmann.htm",
+      "name": "Dr. med. Peter Lehmann",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Innere Medizin",
+      "anschrift": "Bahnhofstr. 17, 82166 Gräfelfing",
+      "telefon": "089 / 85 31 19",
+      "fax": "089 / 854 93 80",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/moehrle/moehrle.htm",
+      "name": "Dr. med. Wolfgang Möhrle",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Innere Medizin",
+      "anschrift": "Bahnhofstr. 98a (2. OG), 82166 Gräfelfing",
+      "telefon": "089 / 85 83 63 84",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [],
+      "hinweis": "Originalprofil technisch nicht vollständig auslesbar (Zeichenkodierung)."
+    },
+    {
+      "pfad": "htm/aerzte/fischer/fischer.htm",
+      "name": "Dr. med. Gottfried Fischer",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Innere Medizin",
+      "anschrift": "Bahnhofstraße 98a, 82166 Gräfelfing",
+      "telefon": "089 / 89 89 94 87-0",
+      "fax": "089 / 89 89 94 87-25",
+      "sprechzeiten": [
+        "Sprechstunde nach Terminvereinbarung"
+      ],
+      "email": "med.fischer@web.de",
+      "leistungen": [],
+      "hinweis": "Die ältere Profilseite nennt abweichend Bahnhofstraße 98a (1. OG)."
+    },
+    {
+      "pfad": "htm/aerzte/fischer/fischer_2.htm",
+      "name": "Dr. med. Gottfried Fischer – Leistungen",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Gastroenterologie",
+      "anschrift": "Bahnhofstraße 98a, 82166 Gräfelfing",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "Diagnostik und Behandlung von Magen-Darm-Erkrankungen",
+        "Proktologie",
+        "Magen- und Darmspiegelungen",
+        "Ultraschall der Bauchorgane, Schilddrüse und Gefäße",
+        "Duplexsonographie",
+        "Spezialsprechstunden für Erkrankungen der Leber"
+      ],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/schraudenbach/schraudenbach.htm",
+      "name": "Dr. med. Lucas Schraudenbach",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Urologie",
+      "anschrift": "Bahnhofstr. 103, 82166 Gräfelfing",
+      "telefon": "089 / 851 011",
+      "fax": "089 / 851 012",
+      "sprechzeiten": [
+        "Mo–Fr 08:30–12:00",
+        "Mo–Di 16:00–19:00",
+        "Do 15:00–18:00"
+      ],
+      "email": "praxis.schraudenbach@yahoo.de",
+      "leistungen": [
+        "Urologische Vorsorge und Tumormedizin",
+        "Diagnose und Therapie von Harnsteinen",
+        "Inkontinenzdiagnostik",
+        "Andrologie und Kinderurologie",
+        "Endoskopie, Bildgebung und ambulante Eingriffe"
+      ],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/schraudenbach/schraudenbach_2.htm",
+      "name": "Dr. med. Lucas Schraudenbach – weitere Informationen",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Urologie",
+      "anschrift": "Bahnhofstr. 103, 82166 Gräfelfing",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [],
+      "hinweis": "Original-Unterseite wegen Zeichenkodierungsfehler nicht auslesbar."
+    },
+    {
+      "pfad": "htm/aerzte/schreiner/schreiner.htm",
+      "name": "Dr. med. Michael Schreiner – HNO-Praxis",
+      "ort": "Gräfelfing",
+      "fachrichtung": "HNO, Allergologie, Naturheilverfahren",
+      "anschrift": "Bahnhofstr. 108, 82166 Gräfelfing",
+      "telefon": "089 / 89 89 19 89",
+      "fax": "089 / 89 89 19 88",
+      "sprechzeiten": [
+        "Mo–Fr 09:00–12:00",
+        "Mo–Mi 16:00–18:00",
+        "Do 16:00–17:30"
+      ],
+      "email": "",
+      "leistungen": [
+        "Stimm- und Sprachmedizin"
+      ],
+      "hinweis": "Die alte Profilseite nennt Carina S. Uhl als weitere Person und widerspricht der aktuellen Ortsübersicht bei der Anschrift."
+    },
+    {
+      "pfad": "htm/aerzte/schreiner/schreiner_2.htm",
+      "name": "Dr. med. Michael Schreiner – Leistungen",
+      "ort": "Gräfelfing",
+      "fachrichtung": "HNO-Heilkunde",
+      "anschrift": "Bahnhofstr. 108, 82166 Gräfelfing",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "Allergietests",
+        "Diagnostik bei Stimm- und Sprachstörungen",
+        "Hördiagnostik einschließlich Neugeborenen-Screening",
+        "Naturheilverfahren, Homöopathie und Akupunktur laut Altseite"
+      ],
+      "hinweis": "Die ältere Leistungsseite nennt Prof. Dr. med. L. Schreiner als weiteres Mitglied."
+    },
+    {
+      "pfad": "htm/aerzte/mansel-detlef/mansel-detlef.htm",
+      "name": "Dr. med. Detlef Mansel / Dr. Ursula Mansel",
+      "ort": "Gräfelfing",
+      "fachrichtung": "Chirurgische Praxis",
+      "anschrift": "Bahnhofstr. 7a, 82166 Gräfelfing",
+      "telefon": "089 / 893 55 000",
+      "fax": "089 / 893 55 088",
+      "sprechzeiten": [
+        "Mo–Fr 08:30–12:30",
+        "Mo, Di 15:00–17:30",
+        "Sonst nach Vereinbarung"
+      ],
+      "email": "ursula.mansel@t-online.de",
+      "leistungen": [],
+      "hinweis": "Im historischen Profil wird außerdem eine abweichende Durchwahl zur Praxis genannt."
+    },
+    {
+      "pfad": "htm/aerzte/gewitsch/gewitsch.htm",
+      "name": "Dr. med. Juri Gewitsch",
+      "ort": "Planegg",
+      "fachrichtung": "Allgemeinmedizin, Naturheilverfahren, Notfallmedizin",
+      "anschrift": "Poststr. 4, 82152 Planegg",
+      "telefon": "089 / 859 42 59",
+      "fax": "089 / 859 84 16",
+      "sprechzeiten": [
+        "Mo–Fr 08:00–12:00",
+        "Mo, Mi 15:00–18:00",
+        "Do 16:00–19:00"
+      ],
+      "email": "",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/gewitsch/gewitsch_2.htm",
+      "name": "Dr. med. Juri Gewitsch – Leistungen",
+      "ort": "Planegg",
+      "fachrichtung": "Allgemeinmedizin",
+      "anschrift": "Poststr. 4, 82152 Planegg",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "EKG",
+        "Lungenfunktionstest",
+        "Langzeit-Blutdruckmessung",
+        "Ultraschall",
+        "Psychosomatische Grundversorgung",
+        "Kleinere chirurgische Behandlungen",
+        "Akupunktur und Naturheilverfahren"
+      ],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/kleine/kleine.htm",
+      "name": "Dr. med. Michael Kleine",
+      "ort": "Planegg",
+      "fachrichtung": "Keine Fachrichtung genannt",
+      "anschrift": "Egenhofenstr. 18, 82152 Planegg",
+      "telefon": "089 / 85 99 338",
+      "fax": "089 / 859 41 19",
+      "sprechzeiten": [],
+      "email": "mwkleine@gmx.de",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/stalf_knoop/stalf_knoop.htm",
+      "name": "Dr. med. Friederike Stalf / Dr. med. Michael Knoop",
+      "ort": "Planegg",
+      "fachrichtung": "Innere Medizin und Allgemeinmedizin",
+      "anschrift": "Hubertusstr. 1b, 82152 Planegg",
+      "telefon": "089 / 859 98 98",
+      "fax": "089 / 859 39 32",
+      "sprechzeiten": [
+        "Mo–Fr 08:00–12:00",
+        "Mo, Di, Do 15:00–18:00"
+      ],
+      "email": "",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/stalf_knoop/stalf_knoop_2.htm",
+      "name": "Praxis Stalf & Knoop – Schwerpunkte",
+      "ort": "Planegg",
+      "fachrichtung": "Innere Medizin, Allgemeinmedizin",
+      "anschrift": "Hubertusstr. 1b, 82152 Planegg",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "Naturheilverfahren",
+        "Akupunktur",
+        "Chirotherapie",
+        "Ergänzende Verfahren laut älterer Angebotsliste: Homöopathie, Neuraltherapie, biologische Tumortherapie, psychosomatische Energetik, Magnetfeld- und Sauerstoff-Ozon-Anwendungen"
+      ],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/trammer_greber/trammer_greber.htm",
+      "name": "Dr. med. A. Trammer / Dr. med. R. Greber",
+      "ort": "Planegg",
+      "fachrichtung": "Chirurgie und Kinderchirurgie",
+      "anschrift": "Bahnhofstr. 42, 82152 Planegg",
+      "telefon": "089 / 85 699 383 / 384",
+      "fax": "089 / 85 699 396",
+      "sprechzeiten": [
+        "Mo–Do 09:00–12:00 und 15:00–17:00",
+        "Fr 09:00–14:00"
+      ],
+      "email": "dr.trammer-dr.greber@t-online.de",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/trammer_greber/trammer_greber_2.htm",
+      "name": "Praxis Trammer & Greber – Schwerpunkte",
+      "ort": "Planegg",
+      "fachrichtung": "Kinderchirurgie",
+      "anschrift": "Bahnhofstr. 42, 82152 Planegg",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [],
+      "hinweis": "Original-Unterseite wegen Zeichenkodierungsfehler nicht auslesbar."
+    },
+    {
+      "pfad": "htm/aerzte/bothge/bothge.htm",
+      "name": "Dr. med. Ch. Bothge",
+      "ort": "Planegg",
+      "fachrichtung": "Innere Medizin, hausärztliche Versorgung",
+      "anschrift": "Bahnhofstr. 41, 82152 Planegg",
+      "telefon": "089 / 899 30 133",
+      "fax": "089 / 895 90 753",
+      "sprechzeiten": [
+        "Mo–Fr 08:00–12:00",
+        "Mo, Di 16:30–19:00",
+        "Do 15:30–18:00"
+      ],
+      "email": "",
+      "leistungen": [],
+      "hinweis": "Historische Praxis, auf der aktuellen Stadtübersicht nicht mehr aufgeführt."
+    },
+    {
+      "pfad": "htm/aerzte/bothge/bothge_2.htm",
+      "name": "Dr. med. Ch. Bothge – Leistungen",
+      "ort": "Planegg",
+      "fachrichtung": "Innere Medizin",
+      "anschrift": "Bahnhofstr. 41, 82152 Planegg",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "EKG, Belastungs-EKG und Langzeit-EKG",
+        "Echokardiographie nach Angaben der Altseite",
+        "Ultraschall der Bauchorgane",
+        "Psychosomatische Basisversorgung",
+        "Diabetes-Schulungen",
+        "Impf- und Reiseberatung"
+      ],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/barran/barran.htm",
+      "name": "Dr. med. W. Barran",
+      "ort": "Planegg",
+      "fachrichtung": "Hautheilkunde und Allergologie",
+      "anschrift": "Hubertusstr. 7, 82152 Planegg",
+      "telefon": "089 / 859 96 95",
+      "fax": "089 / 85 66 22 21",
+      "sprechzeiten": [
+        "Mo–Fr 09:00–12:00",
+        "Mo 16:00–18:00",
+        "Di, Do 16:00–19:00"
+      ],
+      "email": "",
+      "leistungen": [],
+      "hinweis": "Historischer Eintrag; möglicherweise Vorgänger der auf der Übersicht geführten Praxis."
+    },
+    {
+      "pfad": "htm/aerzte/saller/saller.htm",
+      "name": "Dr. med. Johanna Saller",
+      "ort": "Stockdorf",
+      "fachrichtung": "Allgemeinmedizin",
+      "anschrift": "Bahnstr. 3, 82131 Stockdorf",
+      "telefon": "089 / 85 66 10 10",
+      "fax": "089 / 85 66 10 14",
+      "sprechzeiten": [
+        "Mo–Fr 08:00–12:00",
+        "Mo, Do 16:00–18:00"
+      ],
+      "email": "praxis@praxis-stockdorf.de",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/saller/saller_2.htm",
+      "name": "Dr. med. Johanna Saller – Schwerpunkte",
+      "ort": "Stockdorf",
+      "fachrichtung": "Allgemeinmedizin",
+      "anschrift": "Bahnstr. 3, 82131 Stockdorf",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "Phytotherapie und weitere Naturheilverfahren",
+        "Ernährungsberatung",
+        "Akupunktur und Homöopathie",
+        "Reise- und Impfberatung",
+        "Palliativmedizin",
+        "Gesundheits-Check-up und Labordiagnostik",
+        "EKG und Lungenfunktion",
+        "Notfallmedizin und Erste-Hilfe-Unterstützung",
+        "Hygienebelehrungen für Beschäftigte im Lebensmittelbereich"
+      ],
+      "hinweis": "Inhalt anhand indexierter Textfassung rekonstruiert; die direkte HTML-Seite liefert einen Kodierungsfehler."
+    },
+    {
+      "pfad": "htm/aerzte/schelling/schelling.htm",
+      "name": "Gemeinschaftspraxis Martinsried – Jörg und Jens Schelling",
+      "ort": "Martinsried",
+      "fachrichtung": "Allgemeinmedizin",
+      "anschrift": "Röntgenstr. 2, 82152 Martinsried",
+      "telefon": "089 / 85 75 511",
+      "fax": "",
+      "sprechzeiten": [
+        "Mo–Fr 08:00–12:00 und 16:00–18:00",
+        "Außerdem nach Vereinbarung"
+      ],
+      "email": "",
+      "leistungen": [],
+      "hinweis": ""
+    },
+    {
+      "pfad": "htm/aerzte/schelling/schelling_2.htm",
+      "name": "Gemeinschaftspraxis Martinsried – Leistungen",
+      "ort": "Martinsried",
+      "fachrichtung": "Allgemeinmedizin und ergänzende Verfahren",
+      "anschrift": "Planegger Str. 5, 82152 Martinsried",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "Gesundheits- und Krebsfrüherkennungsuntersuchungen",
+        "Ultraschall, Schilddrüsendiagnostik, EKG und Lungenfunktion",
+        "Hausbesuche",
+        "Operationsvorbereitung und Impfberatung",
+        "Hautkrebs-Screening",
+        "Spezielle Sprechstunden zu Gefäßen und Diabetes",
+        "Akupunktur, Hypnose und Infusionen laut historischer Angebotsliste"
+      ],
+      "hinweis": "Starker Widerspruch zur aktuelleren Profilseite (Dr. Ulf statt Dr. Jens Schelling sowie alte Anschrift); unbedingt separat prüfen."
+    },
+    {
+      "pfad": "htm/aerzte/lyding/lyding.htm",
+      "name": "Dr. med. M. Lyding",
+      "ort": "Krailling",
+      "fachrichtung": "Frauenheilkunde und Geburtshilfe",
+      "anschrift": "Muggenthalerstr. 5, 82152 Krailling",
+      "telefon": "089 / 895 28 80",
+      "fax": "089 / 857 37 34",
+      "sprechzeiten": [
+        "Mo–Fr 08:00–12:00",
+        "Mi 15:30–19:00",
+        "Mo, Do 15:30–18:00"
+      ],
+      "email": "dr.martina.lyding@talknet.de",
+      "leistungen": [],
+      "hinweis": "Die aktuelle regionale Übersicht nennt eine andere Straße (Margaretenstr. 52)."
+    },
+    {
+      "pfad": "htm/aerzte/clemm_aulehner/clemm_aulehner_2.htm",
+      "name": "Praxisgemeinschaft Dr. Clemm / Dr. Aulehner – Leistungen",
+      "ort": "Krailling",
+      "fachrichtung": "Innere Medizin und Notfallmedizin",
+      "anschrift": "Margaretenstr. 54a, 82152 Krailling",
+      "telefon": "",
+      "fax": "",
+      "sprechzeiten": [],
+      "email": "",
+      "leistungen": [
+        "EKG, Belastungs-EKG und Langzeit-EKG",
+        "24-Stunden-Blutdruckmessung",
+        "Ultraschall der Bauchorgane und Schilddrüse",
+        "Gefäßdiagnostik mit Doppler-Ultraschall",
+        "Lungenfunktionsdiagnostik",
+        "Chronikerprogramme für Diabetes, KHK, Asthma und COPD",
+        "Vorsorge, Impf- und Reisemedizin",
+        "Sporttauchtauglichkeitsuntersuchungen",
+        "Notfallmedizin, psychosomatische Versorgung und Gesundheitsbelehrung"
+      ],
+      "hinweis": "Nur historischer Zusatzinhalt; diese Praxisgemeinschaft wird so auf der heutigen Krailling-Übersicht nicht geführt."
+    }
+  ],
+  "vorstand": [
+    {
+      "amt": "Vorsitz",
+      "name": "Priv.-Doz. Dr. med. Markus G. Engelmann",
+      "fachrichtung": "Innere Medizin und Kardiologie, Gauting"
+    },
+    {
+      "amt": "Stellvertretung und Schriftführung",
+      "name": "Dr. med. Mansel",
+      "fachrichtung": "Chirurgie, Gräfelfing"
+    },
+    {
+      "amt": "Stellvertretung",
+      "name": "Dr. med. Stefan Nitsch",
+      "fachrichtung": "HNO, Gräfelfing"
+    },
+    {
+      "amt": "Kassenführung",
+      "name": "Dr. med. Johanna Saller",
+      "fachrichtung": "Allgemeinmedizin, Stockdorf"
+    }
+  ]
+}

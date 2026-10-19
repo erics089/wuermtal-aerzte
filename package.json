@@ -1,0 +1,10 @@
+{
+  "name": "wuermtal-aerzte",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Relaunch der Website des Ärztevereins im Würmtal e.V. (statisch, ohne Abhängigkeiten)",
+  "scripts": {
+    "build": "python3 build.py",
+    "serve": "python3 build.py && python3 -m http.server 8080 --directory dist"
+  }
+}
