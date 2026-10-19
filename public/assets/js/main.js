@@ -12,6 +12,11 @@
     });
   }
 
+  /* Platzhalter-Links (href="#") tun nichts */
+  document.querySelectorAll("a[data-noop]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); });
+  });
+
   /* Arztsuche: Freitext + Ort + Fachgebiet */
   var list = document.getElementById("results");
   if (!list) return;

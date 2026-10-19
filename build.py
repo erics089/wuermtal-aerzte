@@ -166,7 +166,8 @@ def brand_mark(root: str) -> str:
             '<span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span>')
 
 
-def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs_assets: bool = False) -> str:
+def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs_assets: bool = False, body_class: str = "") -> str:
+    body_class = f' class="{body_class}"' if body_class else ""
     a = BASE_PATH if abs_assets else root
     canon = f"{SITE_URL}/{path}" if path != "index.html" else f"{SITE_URL}/"
     robots = '<meta name="robots" content="noindex,follow">' if noindex else ""
@@ -195,8 +196,12 @@ def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs
 <link rel="preload" href="{a}assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{a}assets/css/main.css">
 </head>
-<body>
+<body{body_class}>
 <a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="topbar"><div class="wrap topbar-in">
+<p>Diese Webseite wurde neu entwickelt, speziell für den Ärzteverein Würmtal.</p>
+<a class="topbar-cta" href="#" data-noop>Hier die Webseite kaufen, alle Details auf der nächsten Seite {icon("arrow", a)}</a>
+</div></div>
 """
 
 
@@ -284,9 +289,9 @@ def footer(root: str) -> str:
 """
 
 
-def page(title, desc, root, path, body, active="", noindex=False, abs_assets=False) -> str:
-    hd = head(title, desc, root, path, noindex, abs_assets)
-    return hd + header(root, active) + f'<main id="main">\n{body}\n</main>\n' + footer(root)
+def page(title, desc, root, path, body, active="", noindex=False, abs_assets=False, dock="") -> str:
+    hd = head(title, desc, root, path, noindex, abs_assets, "has-dock" if dock else "")
+    return hd + header(root, active) + f'<main id="main">\n{body}\n</main>\n' + dock + footer(root)
 
 
 def page_head(root, crumbs, h1, lead="", bg_word="", symbol="", pos="60% 40%"):
@@ -553,8 +558,23 @@ def build_profile(slug: str, p: dict) -> str:
 {note}
 </div></section>"""
     listed = slug in listed_profile_dirs
+    entry = next((e for e in entries if e["profil_alt"] == slug), None)
+    dock_btns = ""
+    if ref["telefon"]:
+        dock_btns += f'<a class="btn" href="tel:{tel_from_profile(ref["telefon"])}">{icon("phone", root, "sm")}Anrufen</a>'
+    if ref["email"]:
+        dock_btns += f'<a class="btn outline" href="mailto:{esc(ref["email"])}">{icon("mail", root, "sm")}E-Mail schreiben</a>'
+    if entry and entry["webseite"]:
+        w = entry["webseite"]
+        dock_btns += (f'<a class="btn outline" href="{esc(url_web(w))}" target="_blank" rel="noopener noreferrer">'
+                      f'{icon("globe", root, "sm")}Webseite</a>')
+    dock = ""
+    if dock_btns:
+        dock = (f'<nav class="dock" aria-label="Praxis kontaktieren"><div class="dock-in">'
+                f'<div class="dock-who"><strong>{esc(base_name)}</strong><span>{esc(fach)}</span></div>'
+                f'<div class="dock-actions">{dock_btns}</div></div></nav>\n')
     return page(f"{base_name} | Würmtal Ärzte", f"{base_name}, {fach} in {ort}: Kontakt, Sprechzeiten und Leistungen.",
-                root, p["pfad"], body, active="aerzte", noindex=not listed)
+                root, p["pfad"], body, active="aerzte", noindex=not listed, dock=dock)
 
 
 def build_impressum() -> str:
