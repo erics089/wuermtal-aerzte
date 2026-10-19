@@ -156,12 +156,8 @@ def icon(name: str, root: str, cls: str = "") -> str:
             f'<use href="{root}assets/icons.svg#i-{name}"/></svg>')
 
 
-def brand_mark() -> str:
-    return ('<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">'
-            '<defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa662"/>'
-            '<stop offset="1" stop-color="#ee6216"/></linearGradient></defs>'
-            '<rect width="48" height="48" rx="13" fill="url(#bm)"/>'
-            '<path d="M24 12v24M12 24h24" stroke="#fff8f2" stroke-width="3" stroke-linecap="round"/></svg>')
+def brand_mark(root: str) -> str:
+    return f'<img class="brand-logo" src="{root}assets/img/logo-avw.png" width="88" height="40" alt="AVW – Ärzteverein im Würmtal">'
 
 
 def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs_assets: bool = False) -> str:
@@ -175,11 +171,11 @@ def head(title: str, desc: str, root: str, path: str, noindex: bool = False, abs
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="theme-color" content="#ff5a12">
+<meta name="theme-color" content="#df7a36">
 <meta name="color-scheme" content="light dark">
 {robots}
 <link rel="canonical" href="{canon}">
-<link rel="icon" href="{a}favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{a}favicon.png" type="image/png" sizes="64x64">
 <link rel="apple-touch-icon" href="{a}apple-touch-icon.png">
 <link rel="manifest" href="{a}site.webmanifest">
 <meta property="og:type" content="website">
@@ -204,7 +200,7 @@ def header(root: str, active: str = "") -> str:
         return f'<a href="{href}"{cur}>{label}</a>'
     return f"""<header class="site-header">
 <div class="bar">
-<a class="brand" href="{root}index.html" aria-label="Würmtal Ärzte – Startseite">{brand_mark()}
+<a class="brand" href="{root}index.html" aria-label="Würmtal Ärzte – Startseite">{brand_mark(root)}
 <span><span class="brand-name">Würmtal Ärzte</span><span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span></a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
 <nav class="nav" id="site-nav" aria-label="Hauptnavigation">
@@ -225,7 +221,7 @@ def footer(root: str) -> str:
     return f"""<footer class="site-footer">
 <div class="wrap footer-grid">
 <div>
-<a class="brand" href="{root}index.html">{brand_mark()}<span><span class="brand-name">Würmtal Ärzte</span><span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span></a>
+<a class="brand" href="{root}index.html">{brand_mark(root)}<span><span class="brand-name">Würmtal Ärzte</span><span class="brand-sub">Ärzteverein im Würmtal e.V.</span></span></a>
 <p>Das Verzeichnis der Ärztinnen und Ärzte in Gauting, Germering, Gräfelfing, Krailling, Lochham, Martinsried, Neuried, Planegg und Stockdorf.</p>
 </div>
 <div><h4>Orte</h4><ul class="cols">{orte}</ul></div>
@@ -304,7 +300,7 @@ def hero_art() -> str:
     d += f" L576,{base}"
     return f"""<svg viewBox="0 0 600 600" role="img" aria-label="Schematische Pulslinie durch die neun Orte des Würmtals">
 <defs>
-<linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb985"/><stop offset=".55" stop-color="#f7792a"/><stop offset="1" stop-color="#e85a10"/></linearGradient>
+<linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1b784"/><stop offset=".55" stop-color="#e0803a"/><stop offset="1" stop-color="#c9642a"/></linearGradient>
 <radialGradient id="hglow" cx=".25" cy=".15" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 </defs>
 <rect width="600" height="600" rx="40" fill="url(#hg)"/>
@@ -317,7 +313,7 @@ def hero_art() -> str:
 <path d="M24 {base}H576" stroke="#fff" stroke-opacity=".35" stroke-width="1.2" stroke-dasharray="2 7" stroke-linecap="round"/>
 <path d="{d}" fill="none" stroke="#fff8f2" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
 {nodes}{labels}
-<text x="40" y="58" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2.4" fill="#7a2f08" fill-opacity=".85">WÜRM · SCHEMATISCH</text>
+<text x="40" y="58" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2.4" fill="#5e2a0a" fill-opacity=".85">WÜRM · SCHEMATISCH</text>
 </svg>"""
 
 
@@ -357,6 +353,7 @@ def build_index() -> str:
         "telephone": "+49 89 857 1057",
     }, ensure_ascii=False)
     body = f"""<section class="hero">
+<div class="hero-bg" aria-hidden="true"></div>
 <div class="wrap hero-grid">
 <div class="hero-copy">
 <span class="eyebrow">Ärzteverein im Würmtal e.V.</span>
